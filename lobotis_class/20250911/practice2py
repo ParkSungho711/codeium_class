@@ -1,0 +1,106 @@
+import turtle as t
+import random
+
+# 기본 설정
+t.title("거북이 먹이 게임")
+t.shape("turtle")
+t.speed(0)
+
+# 먹이 설정
+food = t.Turtle()
+food.shape("circle")
+food.color("red")
+food.penup()
+food.goto(random.randint(-200, 200), random.randint(-200, 200))
+
+# 메시지 출력용
+message = t.Turtle()
+message.hideturtle()
+message.penup()
+message.goto(0, 200)
+
+# 점수와 시간
+score = 0
+time_left = 30  # 30초
+game_active = True  # 게임 진행 상태
+
+# 화면에 점수와 시간 표시
+def update_message():
+    message.clear()
+    if game_active:
+        message.write(f"점수: {score}  |  남은 시간: {time_left}", align="center", font=("Arial", 16, "bold"))
+    else:
+        message.write(f"시간 종료! 최종 점수: {score}\nEsc 키로 다시 시작", align="center", font=("Arial", 16, "bold"))
+
+update_message()  # 초기 화면
+
+# 움직임 함수
+def turn_right():
+    if game_active:
+        t.setheading(0)
+        t.forward(20)
+        check_eat()
+
+def turn_up():
+    if game_active:
+        t.setheading(90)
+        t.forward(20)
+        check_eat()
+
+def turn_left():
+    if game_active:
+        t.setheading(180)
+        t.forward(20)
+        check_eat()
+
+def turn_down():
+    if game_active:
+        t.setheading(270)
+        t.forward(20)
+        check_eat()
+
+# 먹이 먹었는지 확인
+def check_eat():
+    global score
+    if t.distance(food) < 20:
+        score += 1
+        food.goto(random.randint(-200, 200), random.randint(-200, 200))
+        update_message()
+
+# 시간 카운트
+def countdown():
+    global time_left, game_active
+    if time_left > 0 and game_active:
+        time_left -= 1
+        update_message()
+        t.ontimer(countdown, 1000)
+    elif game_active:
+        game_active = False
+        update_message()
+
+# # 게임 초기화 (Esc 버튼)
+# def reset_game():
+#     global score, time_left, game_active
+#     if not game_active:
+#         score = 0
+#         time_left = 30
+#         game_active = True
+#         t.goto(0, 0)
+#         food.goto(random.randint(-200, 200), random.randint(-200, 200))
+#         t.clear()
+#         update_message()
+#         countdown()
+
+
+# 키보드 이벤트
+t.listen()
+t.onkeypress(turn_right, "Right")
+t.onkeypress(turn_up, "Up")
+t.onkeypress(turn_left, "Left")
+t.onkeypress(turn_down, "Down")
+# t.onkeypress(reset_game, "Escape")  # Esc 키로 재시작
+
+# 시간 시작
+countdown()
+
+t.mainloop()

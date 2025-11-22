@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        #survey{
+            width: 600px;
+            margin-left: 15%;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 1px solid black;
+            background-color: rgb(218, 243, 221);
+        }
+    </style>
+</head>
+<body>
+    <div id="survey">
+    <h1
+    style="text-align: center;
+            color: rgb(35, 80, 31);"
+    >로보티즈 설문조사</h1>
+    
+    <form>
+    이름 : 
+    <input type="text"
+             name="name"
+            placeholder="이름을 반드시 입력해주세요."
+            class="form-control">
+    
+    <br>
+
+    주소 : 
+    <input type="text"
+           name="address"
+           class="form-control">
+
+    <br>
+
+    회사 : 
+    <input type="text" 
+    name="office"
+    placeholder="로보티즈"
+           disabled
+           class="form-control">
+
+    <br>
+    
+    성별 : 
+    <input type="radio" name="gender" value="man">남자
+    <input type="radio" name="gender" value="woman">여자
+
+    <br>
+
+    전화번호 : 
+    <input type="number"
+            name="num"
+            placeholder="- 를 제외하고 적어주세요"
+            class="form-control">
+    
+    <br>
+
+    좋아하는 애완 동물은?  <br>
+    <input type="checkbox" name="pet" value="dog" class="form-check-input">개
+    <input type="checkbox" name="pet" value="cat" class="form-check-input">고양이
+    <input type="checkbox" name="pet" value="bird" class="form-check-input">앵무새
+    <input type="checkbox" name="pet" value="snake" class="form-check-input">뱀
+
+    <br>
+
+    ID : 
+    <input type="text" 
+            name="id"
+            placeholder="ID를 입력하세요"
+            class="form-control">
+
+    <br>
+
+    PW : 
+    <input type="password"
+            name="pw"
+            placeholder="대/소문자&숫자&특수문자"
+            class="form-control">
+
+    <br>
+
+    전하고 싶은 말<br>
+    <textarea
+        rows="6"
+        cols="20"
+        name="memo"
+    ></textarea>
+
+    <br>
+
+    <a href="/20251011/20251011_3.html">
+    <input type="button"
+            name="submit"
+            value="전송"
+            class="btn btn-outline-primary">
+    </a>
+    <br>
+    </form>
+    </div>
+
+</body>
+</html>
