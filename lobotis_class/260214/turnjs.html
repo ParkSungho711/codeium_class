@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>별을 찾는 아기 토끼 (예쁜 폰트 적용)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Gowun+Batang&display=swap" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<style>
+    body {
+        background: #e6f3ff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        /* 기본 폰트를 '감자꽃체'로 설정 */
+        font-family: 'Gamja Flower', cursive;
+    }
+
+    #canvas {
+        margin-bottom: 30px;
+    }
+
+    #book {
+        width: 900px;
+        height: 600px;
+    }
+
+    #book .page {
+        width: 450px;
+        height: 600px;
+        background-color: #fffef0;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        box-sizing: border-box;
+    }
+
+    /* 텍스트 스타일 수정 */
+    h2 { 
+        color: #5d4037; 
+        font-size: 36px; /* 폰트 변경에 맞춰 크기 조정 */
+        margin-bottom: 20px; 
+    }
+    
+    p { 
+        font-size: 26px; /* 가독성을 위해 크기 키움 */
+        color: #6d4c41; 
+        line-height: 1.6; 
+        margin: 10px 0;
+        word-break: keep-all; /* 단어 단위로 줄바꿈 */
+    }
+
+    /* 표지 스타일 */
+    .hard {
+        background: #5c6bc0 !important;
+        color: white !important;
+        border: 4px solid #3949ab;
+    }
+    .hard .content { color: white; }
+    
+    /* 표지 제목 폰트 조정 */
+    .hard h1 { 
+        font-family: 'Gamja Flower', cursive; /* 제목도 같은 폰트 */
+        font-size: 60px; 
+        margin-bottom: 20px; 
+        border-bottom: 3px solid rgba(255,255,255,0.4); 
+        padding-bottom: 15px; 
+        line-height: 1.2;
+    }
+    .hard p { color: #e8eaf6; font-size: 24px; }
+
+    .icon { font-size: 80px; margin-bottom: 20px; }
+    .pg-num { position: absolute; bottom: 20px; width: 100%; text-align: center; color: #aaa; font-size: 18px; }
+
+    /* 버튼 스타일 */
+    .controls { display: flex; gap: 30px; z-index: 100; }
+    .btn {
+        background: #ff7043; color: white; border: none; padding: 15px 40px;
+        font-size: 22px; border-radius: 30px; cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        font-family: 'Gamja Flower', cursive; /* 버튼에도 폰트 적용 */
+    }
+    .btn:hover { background: #f4511e; transform: translateY(-2px); }
+    .btn:active { transform: translateY(1px); }
+
+</style>
+</head>
+<body>
+
+<div id="canvas">
+    <div id="book">
+        <div class="hard">
+            <div class="content">
+                <div class="icon">🐰⭐</div>
+                <h1>별을 찾는<br>아기 토끼</h1>
+                <p>글/그림: 홍길동</p>
+            </div>
+        </div>
+        <div class="hard"></div>
+
+        <div class="page">
+            <div class="content">
+                <div class="icon">🌲</div>
+                <p>옛날 옛적, 깊은 숲속 마을에<br>호기심 많은 토끼 '토토'가 살았어요.</p>
+                <p>토토의 소원은 반짝이는 별을<br>손으로 만져보는 것이었답니다.</p>
+                <div class="pg-num">- 1 -</div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="content">
+                <div class="icon">🎒</div>
+                <p>"좋아, 별을 찾으러 가자!"</p>
+                <p>토토는 당근 주스를 가방에 넣고<br>가장 높은 언덕을 향해 출발했어요.</p>
+                <div class="pg-num">- 2 -</div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="content">
+                <div class="icon">⛰️✨</div>
+                <p>언덕 꼭대기에 도착했지만<br>별은 여전히 하늘 높이 있었어요.</p>
+                <p>실망한 토토가 아래를 내려다보자...</p>
+                <div class="pg-num">- 3 -</div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="content">
+                <div class="icon">🏘️💛</div>
+                <p>숲속 마을의 불빛들이<br>마치 땅 위의 별처럼 반짝이고 있었어요.</p>
+                <p>"아, 내 곁에도 별이 있었구나!"</p>
+                <div class="pg-num">- 4 -</div>
+            </div>
+        </div>
+
+        <div class="hard"></div>
+        <div class="hard">
+            <div class="content">
+                <div class="icon">💤</div>
+                <h2>THE END</h2>
+                <p>행복하게 잠든 토토</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <button class="btn" id="prevBtn">◀ 이전</button>
+    <button class="btn" id="nextBtn">다음 ▶</button>
+</div>
+
+<script src="https://raw.githack.com/blasten/turn.js/master/turn.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#book").turn({
+            width: 900,
+            height: 600,
+            autoCenter: true,
+            duration: 1000,
+            acceleration: true,
+            gradients: true,
+            elevation: 50
+        });
+
+        $("#prevBtn").click(function() { $("#book").turn("previous"); });
+        $("#nextBtn").click(function() { $("#book").turn("next"); });
+
+        $(document).keydown(function(e){
+            if (e.keyCode == 37) $("#book").turn("previous");
+            else if (e.keyCode == 39) $("#book").turn("next");
+        });
+    });
+</script>
+
+</body>
+</html>
